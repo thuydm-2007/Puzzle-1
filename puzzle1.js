@@ -22,13 +22,11 @@ document.addEventListener("DOMContentLoaded", () => {
   let audioLiberado = false;
 
 ativarSom.addEventListener("click", () => {
-
-  // garante que não está mutado
+  // garante que o áudio não está mutado
   bgm.muted = false;
-  bgm.volume = 0.3;
 
-  // força carregamento
-  bgm.load();
+  // volume padrão da música
+  bgm.volume = 0.3;
 
   bgm.play()
     .then(() => {
@@ -36,12 +34,12 @@ ativarSom.addEventListener("click", () => {
       ativarSom.style.display = "none";
       console.log("Som ativado com sucesso");
     })
-    .catch(err => {
+    .catch((err) => {
       console.log("Erro ao ativar som:", err);
       alert("Clique novamente para ativar o som.");
     });
+});
 
-  });
 
   // ▶️ BOTÃO DESVENDAR
   botao.addEventListener("click", () => {
@@ -87,5 +85,6 @@ ativarSom.addEventListener("click", () => {
   });
 
 });
+
 
 
