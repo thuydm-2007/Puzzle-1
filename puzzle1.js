@@ -21,17 +21,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let audioLiberado = false;
 
-  // 🔓 ATIVAR SOM (OBRIGATÓRIO PARA NAVEGADOR)
-  ativarSom.addEventListener("click", () => {
-    bgm.play()
-      .then(() => {
-        audioLiberado = true;
-        ativarSom.style.display = "none";
-        console.log("Áudio liberado com sucesso");
-      })
-      .catch(err => {
-        console.log("Bloqueio de áudio:", err);
-      });
+ativarSom.addEventListener("click", () => {
+
+  // garante que não está mutado
+  bgm.muted = false;
+  bgm.volume = 0.3;
+
+  // força carregamento
+  bgm.load();
+
+  bgm.play()
+    .then(() => {
+      audioLiberado = true;
+      ativarSom.style.display = "none";
+      console.log("Som ativado com sucesso");
+    })
+    .catch(err => {
+      console.log("Erro ao ativar som:", err);
+      alert("Clique novamente para ativar o som.");
+    });
+
   });
 
   // ▶️ BOTÃO DESVENDAR
@@ -78,4 +87,5 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
+
 
